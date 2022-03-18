@@ -101,6 +101,20 @@ class PersonaModel extends Conexion{
       }
    }
 
+
+   public function readAll(){
+      $consulta = "SELECT alumno.idalumno , nombre , apellidos , correo , puntaje FROM persona
+      INNER JOIN alumno ON persona.idpersona = alumno.idPersona  WHERE persona.tipo = ?;";
+
+      $statement = $this->conexion->prepare($consulta);
+      $statement->execute(array(2));
+
+      if($statement->rowCount() > 0){
+         return $statement->fetchAll(PDO::FETCH_ASSOC);
+      }else{
+         return false;
+      }
+   }
 }
 
 
