@@ -23,6 +23,7 @@ function crearUsuario()
       data.append('email' , document.getElementById('email').value);
       data.append('password' , document.getElementById('password').value);
       data.append('tipo' , document.getElementById('tipo').value);
+      data.append('bandera' , '1');
 
       objeto.open('POST' , 'controllers/PersonaController.php');
 
@@ -79,6 +80,7 @@ function ingresar(e)
 
    data.append('pass' , document.getElementById('passLogin').value);
    data.append('email' , document.getElementById('emailLogin').value);
+   data.append('bandera' , '2');
 
 
    objeto.open('POST' , 'controllers/PersonaController.php');
@@ -87,7 +89,6 @@ function ingresar(e)
    {
       if(objeto.readyState == 4 && objeto.status ==  200 )
       {
-         console.log(objeto.responseText);
 
          if(objeto.responseText == '1')
          {
@@ -98,6 +99,8 @@ function ingresar(e)
                showConfirmButton: false,
                timer: 1500
              }).then(function(){
+
+                  localStorage.setItem('email', document.getElementById('emailLogin').value);
                   window.location.href = 'views/maestroView.php';
             });
          }
@@ -109,7 +112,8 @@ function ingresar(e)
                showConfirmButton: false,
                timer: 1500
              }).then(function(){
-                  window.location.href = 'views/alumnoView.php';   
+                  localStorage.setItem('email', document.getElementById('emailLogin').value);
+                  window.location.href = 'views/alumnoView.php';
             });
          }
          else

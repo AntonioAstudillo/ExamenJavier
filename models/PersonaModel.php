@@ -9,6 +9,10 @@ class PersonaModel extends Conexion{
       parent::__construct();
    }
 
+   public function __destruct(){
+      $this->conexion = null;
+   }
+
    public function insert($nombre , $apellidos , $password , $correo , $tipo)
    {
       try
@@ -70,6 +74,32 @@ class PersonaModel extends Conexion{
 
    }
 
+   public function actualizarPuntaje($correo , $puntos){
+      $consulta = "UPDATE alumno SET puntaje = ? WHERE idPersona = (SELECT idPersona FROM persona WHERE correo = ?);";
+
+      $statement = $this->conexion->prepare($consulta);
+      $statement->execute(array($puntos , $correo));
+
+      if($statement->rowCount() > 0)
+      {
+         return true;
+      }else{
+         return false;
+      }
+   }
+
+   public function obtenerPuntaje($correo){
+      $consulta = "SELECT puntaje FROM alumno WHERE idPersona = (SELECT idPersona FROM persona WHERE correo = ?)";
+      $statement = $this->conexion->prepare($consulta);
+      $statement->execute(array($correo));
+
+      if($statement->rowCount() > 0)
+      {
+         return $statement->fetch(PDO::FETCH_ASSOC);
+      }else{
+         return false;
+      }
+   }
 
 }
 

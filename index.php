@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.ico"/>
-	<!-- <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.css">
 	<link rel="stylesheet" type="text/css" href="assets/vendor/css-hamburgers/hamburgers.min.css">
@@ -126,6 +125,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
 	        <button id="btnCrear" type="button" class="btn btn-primary">Crear cuenta</button>
+			  <input type="hidden" id="registro" name="registro" value="">
 	      </div>
 	    </div>
 	  </div>
